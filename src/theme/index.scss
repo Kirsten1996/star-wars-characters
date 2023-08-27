@@ -1,0 +1,148 @@
+// This file imports all styling and gets injected into every stylesheet so variables can be available to you
+// This is also added to pages/_app.js for global styling
+// Checkout components/Organisms/Example/Example.scss
+
+@import './colors.scss';
+@import './fonts.scss';
+@import './breakpoints.scss';
+
+@mixin bp($screen) {
+  @media (min-width: $screen+'px') {
+    @content;
+  }
+}
+@mixin max-bp($screen) {
+  @media (max-width: $screen - 1 +'px') {
+    @content;
+  }
+}
+
+body {
+  background-color: #000;
+  margin: 0;
+}
+
+*[class$=-inner] {
+  max-width: 1025px;
+  padding: 0 1em;
+  margin: 0 auto;
+}
+
+// commons
+.spacing-container {
+  margin: 4.375em auto;
+
+  @include bp($medium) {
+    margin: 7.5em auto;
+  }
+
+  &.noTop {
+    margin-top: 0;
+  }
+
+  &.noBottom {
+    margin-bottom: 0;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: .125em;
+  line-height: 1.3em;
+  font-family: $primary;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #f7b713;
+}
+
+h1 {
+  font-size: 1.8125em;
+  font-weight: 100;
+  text-align: center;
+
+  @include bp($larger) {
+    font-size: 2.25em;
+  }
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 100;
+
+  @include bp($larger) {
+    font-size: 1.8125em;
+  }
+}
+
+p, a {
+  letter-spacing: .0625em;
+  line-height: 1.5em;
+  font-size: 1em;
+  font-family: $primary;
+
+
+  @include bp($medium) {
+    font-size: 1.125em;
+  }
+}
+
+p {
+  font-size: 1em;
+
+  @include bp($larger) {
+    font-size: 1.125em;
+  }
+}
+
+a {
+  font-size: .75em;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus {
+    outline: none !important;
+  }
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none !important;
+}
+
+li {
+  list-style: none;
+}
+
+.homepage {
+  &-wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &-logo {
+    width: 18em;
+    display: flex;
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &-star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: white;
+    z-index: -1;
+  }
+
+  &-search-select {
+    width: 100%;
+  }
+}
