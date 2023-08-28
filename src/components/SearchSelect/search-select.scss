@@ -13,17 +13,20 @@
   div {
     margin-bottom: .5em;
   }
-}
-
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline, 
-.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root:hover 
-.MuiOutlinedInput-notchedOutline {
-  border-color: $yellow !important;
-}
-
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input, 
-.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root, 
-.css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator, 
-.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
-  color: $yellow !important;
+  
+  .MuiOutlinedInput-notchedOutline, 
+  .MuiOutlinedInput-notchedOutline:hover 
+  .MuiOutlinedInput-notchedOutline {
+    border-color: $yellow !important;
+  }
+  
+  .MuiFormLabel-root, 
+  .MuiIconButton-sizeMedium .MuiAutocomplete-popupIndicator, 
+  .MuiSvgIcon-root .MuiSvgIcon-fontSizeMedium .MuiAutocomplete-popupIndicator {
+    color: $yellow !important;
+  }
+  
+  .MuiSvgIcon-root .MuiSvgIcon-fontSizeMedium svg {
+      color: $yellow !important;
+  }
 }
