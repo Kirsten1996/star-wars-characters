@@ -2,8 +2,6 @@ import React, { Fragment, useEffect, useState } from 'react';
 import Image from 'next/image';
 import "./character-display.scss";
 import SearchSelect from "../SearchSelect/index.js";
-import Luke from "../../../public/luke-skywalker.jpg"
-import un from '../../../public/unnamed.png';
 
 const CharacterDisplay = ({ characterData, selectedCharacter }) => {
   const [showCharacteristics, setShowCharacteristics] = useState([]);
@@ -70,15 +68,16 @@ const CharacterDisplay = ({ characterData, selectedCharacter }) => {
    * Gets the name of the character and looks if image exists
    */
   const getImageFromId = (name) => {
+    console.log(name);
     const parameterized = name.trim()
     .toLowerCase()
     .replace(/[^a-zA-Z0-9 -]/, '')
     .replace(/\s/g, '-');
-    const path = `/${parameterized}.jpg`;
+    const path = `/${parameterized}.jpeg`;
     if (imageExists(path)) {
-      return `/${parameterized}.jpg`;
+      return `/${parameterized}.jpeg`;
     } else {
-      return 'https://picsum.photos/256';
+      return '/placeholder.jpeg';
     }
   }
 

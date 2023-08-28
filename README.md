@@ -36,7 +36,7 @@ npm run build
 
 - I'm using the [Swapi API](https://swapi.dev/) to pull data
 
-- I only added two images ("Darth Vader", "Luke Skywalker"), just to show that the functionality works. If another name comes up I'm pulling a placeholder in for an image to show
+- I only added two images ("Darth Vader", "Luke Skywalker", "Chewbacca", "Leia Organa", "Han Solo"), just to show that the functionality works. If another name comes up I'm pulling a placeholder in for an image to show
 
 - Never added timeout for loader, so once data has been saved to sessionStorage, loader gets taken out and comparison section shows
 
