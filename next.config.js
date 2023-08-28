@@ -21,5 +21,11 @@ module.exports = withSass(
       })
       return config
     },
-  })
+  }),
+  {
+    images: {
+      domains: ["images.pexels.com"],
+    },
+  }
+
 )

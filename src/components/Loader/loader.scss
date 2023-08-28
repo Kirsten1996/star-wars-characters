@@ -11,7 +11,7 @@
     right: 0;
     z-index: 1;
     animation: intro 6s ease-out 1s;
-    color: #e8b20e;
+    color: $yellow;
     font-weight: 400;
     font-size: 300%;
     opacity: 0;
@@ -69,7 +69,7 @@
         width: 18em;
     }
 }
-#board {
+&-board {
   transform: perspective(300px) rotateX(25deg);
   transform-origin: 50% 100%;
   text-align: justify;
@@ -84,7 +84,7 @@
   left: 50%;
 }
 
-#board:after {    
+&-board:after {    
   position: absolute;
   content: ' ';
   bottom: 60%;
@@ -94,16 +94,17 @@
 }
 
 /* Set the scrolling animation and position it */
-#content {
+&-content {
   animation: scroll 100s linear 16s;
   position: absolute;
   top: 100%;
+  
+  p {
+    text-align: center;
+    color: $yellow;
+  }
 }
 
-#title, #subtitle {
-  text-align: center;
-  color: #e8b20e;
-}
 
 @keyframes scroll {
     0% {

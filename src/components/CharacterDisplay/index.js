@@ -1,12 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import Image from 'next/image';
 import "./character-display.scss";
 import SearchSelect from "../SearchSelect/index.js";
-import sky from "../../assets/skywalk.jpeg"
+import Luke from "../../../public/luke-skywalker.jpg"
+import un from '../../../public/unnamed.png';
 
 const CharacterDisplay = ({ characterData, selectedCharacter }) => {
   const [showCharacteristics, setShowCharacteristics] = useState([]);
 
   useEffect(() => {
+    /**
+     * Mapping selectedCharacter to get character name
+     * then filters characterData for character's object data
+     */
     const filteredCharacters = Object.values(selectedCharacter).flatMap(
       (selected) => {
         if (selected.name !== undefined) {
@@ -18,42 +24,112 @@ const CharacterDisplay = ({ characterData, selectedCharacter }) => {
       }
     );
 
-    console.log(filteredCharacters);
     setShowCharacteristics(filteredCharacters);
-  }, [selectedCharacter, characterData]);
-  console.log(typeof showCharacteristics);
+
+  }, [
+    selectedCharacter,
+    characterData,
+  ]);
+
+  const getStatClass = (value, key, index, parentObj) => {
+    if (parentObj.length > 1) {
+      let positionToCheck;
+      if (index === 0) {
+        positionToCheck = 1;
+      } else {
+        positionToCheck = 0;
+      }
+      if (value > parentObj[positionToCheck][key]) {
+        return 'character-display-highlighted';
+      } else {
+        return '';
+      }
+    } else {
+      return '';
+    }
+  };
+
+  /**
+   * 
+   * @param {*} image_url 
+   * 
+   * Checks if image path exists
+   */
+  const imageExists = (image_url) => {
+    var http = new XMLHttpRequest();
+
+    http.open('HEAD', image_url, false);
+    http.send();
+
+    return http.status != 404;
+  }
+
+  /**
+   * 
+   * @param {*} name 
+   * Gets the name of the character and looks if image exists
+   */
+  const getImageFromId = (name) => {
+    const parameterized = name.trim()
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9 -]/, '')
+    .replace(/\s/g, '-');
+    const path = `/${parameterized}.jpg`;
+    if (imageExists(path)) {
+      return `/${parameterized}.jpg`;
+    } else {
+      return 'https://picsum.photos/256';
+    }
+  }
+
   return (
     <div className="character-display">
       <div className="character-display-characteristics">
-        {/* {showCharacteristics === [] ? ( */}
         {Object.values(showCharacteristics).map((item, key) => (
           <div className="character-display-wrap" key={key}>
             <h2>{item.name}</h2>
             <div className="character-display-characteristics-img">
-              <img src={sky} alt="" />
+              <img src={getImageFromId(item.name)} alt="" />
             </div>
-            <div className="character-display-attributes mobile">
+            <div className="character-display-attributes">
               <div>
                 <span>age: </span>
-                <span>1</span>
+                <span className="">{item.birth_year}</span>
               </div>
               <div>
                 <span>mass: </span>
-                <span>2</span>
+                <span
+                className={`${getStatClass(
+                  item.mass,
+                  'mass',
+                  key,
+                  showCharacteristics
+                )}`}
+                >
+                  {item.mass}
+                </span>
               </div>
               <div>
                 <span>height:</span>
-                <span>3</span>
+                <span
+                className={`${getStatClass(
+                  item.height,
+                  "height",
+                  key,
+                  showCharacteristics
+                )}`}
+                >
+                  {item.height}
+                </span>
               </div>
               <div>
                 <span>hair color:</span>
-                <span>4</span>
+                <span>{item.hair_color}</span>
               </div>
               <div>
                 <span>skin color:</span>
-                <span>5</span>
+                <span>{item.skin_color}</span>
               </div>
-              <div className="character-display-attributes"></div>
             </div>
           </div>
         ))}
@@ -64,61 +140,10 @@ const CharacterDisplay = ({ characterData, selectedCharacter }) => {
 
 export default CharacterDisplay;
 
-    // const getCharacterName = Object.values(characterData).filter(
-    //   (selected) => selected.name === selectedCharacter[i].name
-    // );
-    // console.log(getCharacterName, '4');
-    // setShowCharacteristics(getCharacterName);
-
-    // {
-    //   if(selected !== undefined) {
-    //     console.log(selected.name, "//////")
-    // Object.values(characterData).filter(
-    // (match) => console.log(match.name === selected.name, 'MATCH')
-    // )
-    // setShowCharacteristics(displayCharacter);
-    // console.log(showCharacteristics, 'displayCharacter');
-    //   }
-    // })
-    // console.log(getCharacterName, 'displayCharacter');
-    //     !Object.values(characterData).some(
-    //       (match) => selected.name === match.name
-    //     )
-    // );
-// ) : (
-//               <Fragment>
-                
-//                 {/* <h2>{item.name}</h2> */}
-//                 <div className="character-display-characteristics-img">
-//                   <img src={sky} alt="" />
-//                 </div>
-//                 <div className="character-display-attributes mobile">
-//                   <div>
-//                     <span>age: </span>
-//                     <span>1</span>
-//                   </div>
-//                   <div>
-//                     <span>mass: </span>
-//                     <span>2</span>
-//                   </div>
-//                   <div>
-//                     <span>height:</span>
-//                     <span>3</span>
-//                   </div>
-//                   <div>
-//                     <span>hair color:</span>
-//                     <span>4</span>
-//                   </div>
-//                   <div>
-//                     <span>skin color:</span>
-//                     <span>5</span>
-//                   </div>
-//                   <div className="character-display-attributes">
-
-//                   </div>
-//                 </div>
-//               </Fragment>
-//             )}
-//           </div>
-//          );
-//       })} 
+        //           className={`${highestCharacterHeight[0] > highestCharacterHeight[1]}
+        // ? character-display-highlighted
+        // :  ${highestCharacterHeight[0] < highestCharacterHeight[1]}
+        // ? character-display-highlighted
+        // :  ${highestCharacterHeight[0] === highestCharacterHeight[1]}
+        // ? character-display-highlighted
+        // : normal`}

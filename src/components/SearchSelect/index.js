@@ -21,10 +21,16 @@ const SearchSelect = ({ characterData, item }) => {
       }
     }, [router]);
   
+    /**
+     * 
+     * @param {*} event 
+     * @param {*} value 
+     * 
+     * Two different handleChange func for two selects
+     */
   const characterOneHandleChange = (event, value) => {
     setSelectedCharacterOne(value);
-    console.log(selectedCharacterOne);
-    console.log(router)
+    // Passes values to homepage query 
     router.push(
       {
         pathname: '/',
@@ -37,7 +43,6 @@ const SearchSelect = ({ characterData, item }) => {
 
   const characterTwoHandleChange = (event, value) => {
     setSelectedCharacterTwo(value);
-    console.log(selectedCharacterTwo);
     router.push(
       {
         pathname: '/',
@@ -54,13 +59,13 @@ const SearchSelect = ({ characterData, item }) => {
           options={
             Object.keys(characterData)
               .map((i) => characterData[i].name)
-              .sort() || []
+              .sort()
           }
           onChange={characterOneHandleChange}
           getOptionDisabled={(option) => option === selectedCharacterTwo}
           sx={{ width: 300 }}
           renderInput={(params) => (
-            <TextField {...params} label="Choose your character" />
+            <TextField {...params} label="Choose your character one" />
           )}
         />
         <Autocomplete
@@ -68,13 +73,13 @@ const SearchSelect = ({ characterData, item }) => {
           options={
             Object.keys(characterData)
               .map((i) => characterData[i].name)
-              .sort() || []
+              .sort()
           }
           onChange={characterTwoHandleChange}
           getOptionDisabled={(option) => option === selectedCharacterOne}
           sx={{ width: 300 }}
           renderInput={(params) => (
-            <TextField {...params} label="Choose your character" />
+            <TextField {...params} label="Choose your character two" />
           )}
         />
       </div>

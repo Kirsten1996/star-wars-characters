@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import SearchSelect from '../components/SearchSelect';
 import CharacterDisplay from '../components/CharacterDisplay';
 
+// Star component creation
 const Star = ({ top, left }) => {
   return (
     <div className="homepage-star" style={{ top: top + 'px', left: left + 'px' }}></div>
@@ -18,10 +19,10 @@ function HomePage({ query, characters }) {
   const router = useRouter();
 
   
-  const charactersCount = characters.count;
+  const charactersCount = characters.count; 
   const characterPerPage = characters.results.length;
   const nextPage = 2;
-  const pagesRemaining = Math.ceil(charactersCount / characterPerPage);
+  const pagesRemaining = Math.ceil(charactersCount / characterPerPage); // Rounds up calculation to get amount of pages
   
   useEffect(() => {
     async function fetchData() {
@@ -36,13 +37,9 @@ function HomePage({ query, characters }) {
       setData(allCharacters);
     }
 
+    // Conditional to fetch data or pull from session storage
     if (sessionStorage.getItem('characters') === null) {
       fetchData();
-      console.log(charactersCount, 'charactersCount');
-      if (data.length === charactersCount) {
-        const stringifyObject = JSON.stringify(data);
-        sessionStorage.setItem('characters', stringifyObject);
-      }
     } else {
       const getCharactersSaved = sessionStorage.getItem('characters');
       const getCharacters = JSON.parse(getCharactersSaved);
@@ -52,6 +49,7 @@ function HomePage({ query, characters }) {
 
   const numStars = 300;
 
+  // functionality for starry background
   useEffect(() => {
     function randomPosition() {
       const randomX = Math.floor(Math.random() * window.innerWidth);
@@ -87,12 +85,16 @@ function HomePage({ query, characters }) {
     }
   }, [router]);
 
-  console.log(data, '---------QUERY---------');
+  // Saves session data once data === charactersCount
+  if (data.length === charactersCount) {
+    const stringifyObject = JSON.stringify(data);
+    sessionStorage.setItem('characters', stringifyObject);
+  }
+
 
   return (
     <div className="homepage">
-      {data.length === charactersCount &&
-      sessionStorage.getItem('characters') !== null ? (
+      {data.length === charactersCount ? (
         <div className="homepage-inner">
           <div className="homepage-wrap">
             <div className="homepage-logo">

@@ -1,55 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# This is a comparison tool for Star Wars characters
+
+Select a character from the dropdown and see all characteristics
 
 ## Getting Started
 
-First, run the development server:
+First, let's talk node V
 
-```bash
-npm run dev
-# or
-npm dev
+```
+switch to v14.19.2
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+npm install 
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+npm run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+npm run build
+```
 
-## Learn More
+## Some useful information
 
-To learn more about Next.js, take a look at the following resources:
+- This project uses Next.js v10, this is the last working version where node-sass can be used without the modular styling approach. I created this a while back for any future projects. So I can download the [mockup_project](https://github.com/Kirsten1996/mockup_project) and get started.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- For the loader animations I had help with using the following [codepen](https://codepen.io/christopherkade/pen/rJVPjz), so big thanks to Christopher Kade for his cool animation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- I'm using Netlify to deploy and host this [project](https://storied-kringle-61e3fa.netlify.app/). Couldn't use Vercel because node v14.x has been deprecated
 
-## About project
+- I'm using the [Swapi API](https://swapi.dev/) to pull data
 
-Things to know about this project
-
-- Using the atomic design principle [<--- For more info](https://andela.com/insights/structuring-your-react-application-atomic-design-principles/)
-- Using Plop to generate components so that unit testing, styling and everything you need is generated for you (checkout scripts in package.json)
-
-#### Bodyloader
-
-- When creating a new component ```npm generate```
-
-- When you'd like for the organism to appear in the body-loader:
-
-- /src/containers/CMSPage/bodyLoader.js
-
-- Run ```npm body-loader```
- 
-This will set up your organism to align with what's coming from the endpoint:
-
-- It will use loadable to import components
-
-- It will add the component to a switch statement where the 
-components are also also LazyLoaded.
-
-- The generic page will then map through all components from the endpoints provided
-refer to /src/containers/CMSPage/index
+- I only added two images ("Darth Vader", "Luke Skywalker"), just to show that the functionality works. If another name comes up I'm pulling a placeholder in for an image to show

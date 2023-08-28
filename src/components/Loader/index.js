@@ -5,7 +5,6 @@ import "./loader.scss"
 
 
 const Loader = () => {
-
   return (
     <div className="loader">
       <h1 className="loader-intro">
@@ -15,13 +14,16 @@ const Loader = () => {
       <div className="loader-logo">
         <StarWarsLogo />
       </div>
-      <div id="board">  
-        <div id="content">
+      <div className="loader-board">
+        <div className="loader-content" id="content">
           <p id="title">Episode I</p>
           <p id="subtitle">THE CODER'S MENACE</p>
           <br />
-          <p>Turmoil has engulfed the Galactic Republic as Christopher Kade finishes studying to become a master in his trade.</p>        
-        </div>  
+          <p>
+            Turmoil has engulfed the Galactic Republic as Christopher Kade
+            finishes studying to become a master in his trade.
+          </p>
+        </div>
       </div>
     </div>
   );
