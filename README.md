@@ -32,6 +32,12 @@ npm run build
 
 - I'm using Netlify to deploy and host this [project](https://storied-kringle-61e3fa.netlify.app/). Couldn't use Vercel because node v14.x has been deprecated
 
+- Site times out as it's not the paid version of Netlify, sorry
+
 - I'm using the [Swapi API](https://swapi.dev/) to pull data
 
 - I only added two images ("Darth Vader", "Luke Skywalker"), just to show that the functionality works. If another name comes up I'm pulling a placeholder in for an image to show
+
+- Never added timeout for loader, so once data has been saved to sessionStorage, loader gets taken out and comparison section shows
+
+- Spent about 10 hours [+/-]
