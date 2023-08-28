@@ -19,8 +19,8 @@ function HomePage({ query, characters }) {
   const router = useRouter();
 
   
-  const charactersCount = characters.count; 
-  const characterPerPage = characters.results.length;
+  const charactersCount = characters.count; // Gets amount of character objects
+  const characterPerPage = characters.results.length; // checks length per request
   const nextPage = 2;
   const pagesRemaining = Math.ceil(charactersCount / characterPerPage); // Rounds up calculation to get amount of pages
   
@@ -32,6 +32,7 @@ function HomePage({ query, characters }) {
       for (let page = nextPage; page <= pagesRemaining; page++) {
         const res = await fetch(`https://swapi.dev/api/people/?page=${page}`);
         const pageData = await res.json();
+        // appends prev data and new data
         allCharacters = [...allCharacters, ...pageData.results];
       }
       setData(allCharacters);

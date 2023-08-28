@@ -37,7 +37,7 @@ const CharacterDisplay = ({ characterData, selectedCharacter }) => {
       } else {
         positionToCheck = 0;
       }
-      if (value > parentObj[positionToCheck][key]) {
+      if (parseInt(value) > parseInt(parentObj[positionToCheck][key])) {
         return 'character-display-highlighted';
       } else {
         return '';
@@ -54,11 +54,16 @@ const CharacterDisplay = ({ characterData, selectedCharacter }) => {
    * Checks if image path exists
    */
   const imageExists = (image_url) => {
-    var http = new XMLHttpRequest();
+    // Create a new XMLHttpRequest object.
+    let http = new XMLHttpRequest();
 
+    // Send the HEAD request to the server.
     http.open('HEAD', image_url, false);
     http.send();
 
+    // Check if the response status code is not 404 (Not Found).
+    // If it's not 404, the image is considered to exist, so return 'true'.
+    // If the status code is 404, the image doesn't exist, so return 'false'.
     return http.status != 404;
   }
 
